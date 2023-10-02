@@ -25,10 +25,6 @@ public class GameLogic {
     Inventario inventario = new Inventario();
     
     // ARMAS
-    ArrayList <Item> itens = new ArrayList<Item>();
-    
-    Item faca = new Item("Faca", 4);
-    Item espadaSimples = new Item("Espada de ferro", 5);
     
     Item a1 = new Item("Biohazard", 15);
     Item a2 = new Item("Blizzard Bow", 25);
@@ -94,10 +90,6 @@ public class GameLogic {
     public void checkAto(Player jogador){
         
         if(jogador.getXp()<= 10 && ato == 1 ){
-            itens.add(faca);
-            itens.add(espadaSimples);
-            inventario.setItens(itens);
-            
             Story.atoI();
             Batalha(jogador, fada);
             
@@ -106,7 +98,7 @@ public class GameLogic {
                 jogadorVenceu = false;
                         
                 jogador.Curar();
-                inventario.getItens().add(a1);
+                jogador.getInventario().getItens().add(a1);
                 System.out.println();
                 System.out.println("Você encontrou a Biohazard!");
                 System.out.println();
@@ -122,10 +114,10 @@ public class GameLogic {
                     Story.Kvasir();
 
                     jogador.setXp(jogador.getXp() + 10);
-                    jogador.setMaxHp(jogador.getMaxHp() + 10);
+                    jogador.setmaxHp(jogador.getmaxHp() + 10);
 
                     a1.setDano(5);
-                    jogador.setDano(5);
+                    jogador.setdano(5);
                     
                     ato = 2;
                     lugar = 1;
@@ -171,9 +163,9 @@ public class GameLogic {
                     Story.Atopos();
 
                     jogador.setXp(jogador.getXp() + 10);
-                    jogador.setMaxHp(jogador.getMaxHp() + 10);
+                    jogador.setmaxHp(jogador.getmaxHp() + 10);
                     a2.setDano(5);
-                    jogador.setDano(5);
+                    jogador.setdano(5);
                     
                     ato= 3;
                     lugar = 2;
@@ -216,10 +208,10 @@ public class GameLogic {
                     Story.Ouroboros();
 
                     jogador.setXp(jogador.getXp() + 10);
-                    jogador.setMaxHp(jogador.getMaxHp() + 10);
+                    jogador.setmaxHp(jogador.getmaxHp() + 10);
 
                     a3.setDano(5);
-                    jogador.setDano(5);
+                    jogador.setdano(5);
                     
                     ato= 4;
                     lugar = 3;
@@ -350,7 +342,7 @@ public class GameLogic {
                         break;
                     }
                     
-                    jogador.setHp(jogador.getHp() - danoInimigo);
+                    jogador.setHp(jogador.gethp() - danoInimigo);
                     
                     System.out.println();
                     jogador.Info();
@@ -360,7 +352,7 @@ public class GameLogic {
                     pressioneEnter();
                     System.out.println();
                     
-                    if (jogador.getHp() <= 0) {
+                    if (jogador.gethp() <= 0) {
                         System.out.println("Você foi derrotado pelo " + inimigo.getname() + "...");
                         inimigoVenceu = true;
                         isRunning = false;

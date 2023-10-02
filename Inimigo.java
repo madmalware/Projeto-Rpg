@@ -10,49 +10,43 @@ import java.util.Random;
  *
  * @author Mad Malware
  */
-    public class Inimigo { 
-        
-    private String name; 
-    int dano;
-    int hp;
-    private int maxHp;
-        
-    public Inimigo(String name, int maxHp, int dano) { 
-        this.name = name; 
-        this.maxHp = maxHp; 
-        this.hp = maxHp; 
-        this.dano = dano; 
-    } 
-    
-    public int ataque() { 
-        Random rand = new Random(); 
-        int ataque = rand.nextInt(this.dano) + 1; 
-        return ataque; 
+    public class Inimigo extends Personagem { 
+
+    public Inimigo(String name,int maxHp, int dano) {
+        super(name, maxHp, maxHp, dano);
     }
     
     public void Info(){
         System.out.println("Status do inimigo: ");
-        System.out.println("Hp: " + this.hp + "/" + this.maxHp + ".");
-        System.out.println("Força: "+ this.dano);
+        System.out.println("Hp: " + super.gethp() + "/" + super.getmaxHp() + ".");
+        System.out.println("Força: "+ super.getdano());
     }
     
+    @Override
+    public int ataque() {
+        Random rand = new Random();
+        int ataque = rand.nextInt(super.getdano()) + 1;
+        return ataque;
+    }
+    
+    @Override
     public int getmaxHp(){ 
-        return maxHp; 
+        return super.getmaxHp(); 
     } 
     
+    @Override
     public String getname(){ 
-        return name; 
+        return super.getname(); 
     }    
     
+    @Override
     public int getdano(){ 
-        return dano; 
+        return super.getdano(); 
     }
     
+    @Override
     public int gethp(){ 
-        return hp; 
+        return super.gethp(); 
     }
     
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
 }

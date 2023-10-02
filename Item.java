@@ -38,23 +38,10 @@ public class Item {
         return dano;
     }
 
-    /**
-     * @return the danoMagico
-     */
-    /*public int getDanoMagico() {
-        return danoMagico;
-    }
-
-    /**
-     * @param equipado the equipado to set
-     */
     public void setEquipado(boolean equipado) {
         this.equipado = equipado;
     }
 
-    /**
-     * @param dano the dano to set
-     */
     public void setDano(int dano) {
         this.dano = dano;
     }

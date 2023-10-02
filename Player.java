@@ -10,32 +10,32 @@ import java.util.Random;
  *
  * @author Mad Malware
  */
-public class Player{
+public class Player extends Personagem{
 
     Story story = new Story();
     private Inventario<Item> inventario;
     //Inventario inventario = new Inventario();
    
-    private String name;
-    private int maxHp;
-    private int hp, xp, dano;
-   
-    public Player(String name){
-        this.name = name;
-        this.maxHp = 20;
-        this.hp = maxHp;
+    private int xp;
+
+    public Player(){
+            super("", 20, 20, 3);
+            this.inventario = new Inventario<>();
+    }
+    
+    public Player(String name, Inventario<Item> inventario) {
+        super(name, 20, 20, 3);
         this.xp = 0;
-        this.dano = 3;
-        this.inventario = new Inventario<>();
+        this.inventario = this.inventario;
     }
    
     public void Info(){
         GameLogic.Titulo("Seu status: ");
-        System.out.println("Hp: " + this.hp + "/" + this.maxHp + ".");
+        System.out.println("Hp: " + super.gethp() + "/" + super.getmaxHp() + ".");
         System.out.println("Xp: "+ this.xp);
-        System.out.println("Força: "+ this.dano);
-        
-        Item armaEquipada = inventario.getItemEquipado();
+        System.out.println("Força: "+ super.getdano());
+
+        Item armaEquipada = getInventario().getItemEquipado();
     
         if (armaEquipada != null) {
             System.out.println("Arma equipada: " + armaEquipada.getName());
@@ -45,78 +45,61 @@ public class Player{
         
         System.out.println();
     }
+    
+    public void Curar(){
+        super.setHp(getmaxHp());
+    }
         
    
+    @Override
     public int ataque() {
         Random rand = new Random();
-        int ataque = rand.nextInt(this.dano) + 1;
+        int ataque = rand.nextInt(super.getdano()) + 1;
         return ataque;
     }
     
-    public int Curar(){
-        return this.hp = maxHp;
-    }
     
-    
-    public String getName() {
-        return name;
-    }
-
-
-    /**
-     * @return the maxHp
-     */
-    public int getMaxHp() {
-        return maxHp;
-    }
-
-    /**
-     * @param maxHp the maxHp to set
-     */
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
-    }
-
-    /**
-     * @return the hp
-     */
-    public int getHp() {
-        return hp;
-    }
-
-    /**
-     * @param hp the hp to set
-     */
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
-
-    /**
-     * @return the xp
-     */
     public int getXp() {
         return xp;
     }
 
-    /**
-     * @param xp the xp to set
-     */
     public void setXp(int xp) {
         this.xp = xp;
     }
-
-    /**
-     * @return the dano
-     */
-    public int getDano() {
-        return dano;
+    
+    @Override
+    public int getmaxHp(){ 
+        return super.getmaxHp(); 
+    } 
+    
+    @Override
+    public String getname(){ 
+        return super.getname(); 
+    }    
+    
+    @Override
+    public int getdano(){ 
+        return super.getdano(); 
+    }
+    
+    @Override
+    public int gethp(){ 
+        return super.gethp(); 
     }
 
     /**
-     * @param dano the dano to set
+     * @return the inventario
      */
-    public void setDano(int dano) {
-        this.dano = dano;
+    public Inventario<Item> getInventario() {
+        return inventario;
     }
+
+    /**
+     * @param inventario the inventario to set
+     */
+    public void setInventario(Inventario<Item> inventario) {
+        this.inventario = inventario;
+    }
+
     
 }

@@ -45,15 +45,15 @@ public class Inventario <X extends Item> {
         
         GameLogic.Titulo("Escolha um item: ");
         
-        for ( i = 1; i < getItens().size(); i++) {
-            Item item = getItens().get(i);
+        for ( i = 1; i <= jogador.getInventario().getItens().size(); i++) {
+            Item item = jogador.getInventario().getItens().get(i-1);
             System.out.println("(" + i + ") " + item.getName());
         }
         
         int input = GameLogic.lerInt("-> ", i);
         
-        if (input >= 1 && input < getItens().size()) {
-            Item itemSelecionado = getItens().get(input);
+        if (input >= 1 && input <= jogador.getInventario().getItens().size()) {
+            Item itemSelecionado = jogador.getInventario().getItens().get(input-1);
         
         // verificar se o item ja ta equipado
             if (itemSelecionado.isEquipado()) {
@@ -66,7 +66,7 @@ public class Inventario <X extends Item> {
                 }
             // equipar novo item e atualizar o dano do jogador
                 itemSelecionado.setEquipado(true);
-                jogador.setDano(itemSelecionado.getDano());
+                jogador.setdano(itemSelecionado.getDano());
                 equipado = true;
             }
         }
@@ -74,7 +74,7 @@ public class Inventario <X extends Item> {
         
     }
     
-    public Item getItemEquipado(){
+    public Item getItemEquipado( ){
         for (Item item : getItens()) {
             if (item.isEquipado()) {
                 return item;
